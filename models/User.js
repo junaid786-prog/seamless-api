@@ -108,15 +108,20 @@ const UserSchema = new Mongoose.Schema({
         enum:['Active', 'Suspend', 'Blocked'],
         default: 'Active'
     },
+    createDate: {
+        type: Date,
+        default: Date.now()
+    },
     products:[
         {
-            productName: String,
-            productCategory: {
+            Product_ID: String,
+            Product_Name: String,
+            Category: {
                 type: String,
-                enum: ['Game Slot', 'Live Casino', 'Game Card', 'Poker', 'Lottery', 'Keno', 'Trading', 'Sportbook'],
+                enum: ['Games Slot', 'Live Casino', 'Game Card', 'Poker', 'Lottery', 'Keno', 'Trading', 'Sportbook'],
                 required: [true, 'enter category of product']
             },
-            holdPercentage: {
+            Percentage: {
                 required:[true, 'enter percentage awarded to agent'],
                 type: Number,
                 min: [0.00, 'minimum hold percentage is 0.00 %'],

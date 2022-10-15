@@ -15,7 +15,7 @@ exports._isAuthorizedUser = CatchAsync(async (req, res, next) => {
 })
 
 exports._isAdmin = CatchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user._id)
+  const user = await User.findById(req.user && req.user._id)
   if (user.userType === "Admin") next()
   else throw new ApiError("You are not authorized for it - only admin", 403)
 })
