@@ -7,6 +7,8 @@ exports._sendToken = (user, statusCode, res) => {
   const options = {
     expiresIn: new Date(Date.now() + COOKIE_EXPIRE * 24 * 60 * 60 * 100), //milli seconds
     httpOnly: true,
+    secure:true,
+    sameSite:'none',
   }
   res.cookie("token", JWT_TOKEN, options)
   res.status(statusCode).json({

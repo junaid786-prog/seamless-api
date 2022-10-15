@@ -21,7 +21,7 @@ app.use(
     //origin: "https://seamless-api.netlify.app",
     //
     origin: "*",
-    credentials: true,
+    //credentials: true,
   })
 )
 
