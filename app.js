@@ -18,8 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(
   cors({
-    origin: "https://seamless-api.netlify.app",
-    //origin: "http://localhost:3000",
+    //origin: "https://seamless-api.netlify.app",
+    //
+    origin: "*",
     credentials: true,
   })
 )
