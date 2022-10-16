@@ -20,8 +20,8 @@ app.use(
   cors({
     //origin: "https://seamless-api.netlify.app",
     //
-    origin: "*",
-    //credentials: true,
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 )
 

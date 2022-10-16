@@ -59,6 +59,17 @@ exports.getProfile = CatchAsync(async (req, res, next) => {
   })
 })
 
+exports.getMyType = CatchAsync(async(req, res)=>{
+  const user = req.user
+  if(!user) throw new APIError("you are not logged in", 402)
+  const foundUser = await User.findById(user.id)
+  if(!foundUser) throw new APIError("you are not logged in", 402)
+
+  res.status(200).json({
+    success: true,
+    userType: foundUser.userType
+  })
+})
 // change my password
 exports.changeMyPassword = CatchAsync(async(req, res, next)=>{
   const user = req.user

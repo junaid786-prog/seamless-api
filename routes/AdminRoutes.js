@@ -38,7 +38,7 @@ Router.route("/admin/create/agent").post(
   _isAdmin,
   createAgent
 )
-Router.route("/admin/myagents").get(_isAuthorizedUser, _isAdmin, myAgents)
+Router.route("/admin/myagents").get(_isAuthorizedUser, myAgents)
 Router.route("/admin/update/agent/:id").put(
   _isAuthorizedUser,
   _isAdmin,

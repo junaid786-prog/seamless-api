@@ -82,8 +82,6 @@ exports.createAgent = CatchAsync(async (req, res, next) => {
 exports.createSubAdmin = CatchAsync(async (req, res, next) => {
   const admin = req.user
   if (!admin) throw new APIError("please login first", 402)
-  if (!_isAdmin)
-    throw new APIError("You are not authorized for it - only admin", 403)
   const { userName, name, phone, password, permissions } = req.body
   if (!userName) throw new APIError("enter username of sub admin", 402)
   const newUserName = admin.userName + "@" + userName
@@ -189,9 +187,6 @@ exports.withdrawCredit = CatchAsync(async (req, res, next) => {
 // 3. show list of subadmins
 exports.mySubAdmins = CatchAsync(async (req, res, next) => {
   const admin = req.user
-  if (!admin) throw new APIError("please login first", 402)
-  if (!_isAdmin)
-    throw new APIError("You are not authorized for it - only admin", 403)
   const subAdmins = await User.find({
     userName: {
       $regex: `^${admin.userName}`,
@@ -210,8 +205,7 @@ exports.mySubAdmins = CatchAsync(async (req, res, next) => {
 exports.myAgents = CatchAsync(async (req, res, next) => {
   const admin = req.user
   if (!admin) throw new APIError("please login first", 402)
-  if (!_isAdmin)
-    throw new APIError("You are not authorized for it - only admin", 403)
+  
   const agents = await User.find({
     userType: "Agent",
   })

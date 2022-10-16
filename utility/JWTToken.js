@@ -5,10 +5,10 @@ exports._sendToken = (user, statusCode, res) => {
   const JWT_TOKEN = user.getJWTToken()
   //cookie options
   const options = {
-    expiresIn: new Date(Date.now() + COOKIE_EXPIRE * 24 * 60 * 60 * 100), //milli seconds
+    expiresIn: new Date(Date.now() + process.env.JWT_EXPIRE * 24 * 60 * 60 * 100), //milli seconds
     httpOnly: true,
-    secure:true,
-    sameSite:'none',
+    // secure:true,
+    // sameSite:'none',
   }
   res.cookie("token", JWT_TOKEN, options)
   res.status(statusCode).json({
